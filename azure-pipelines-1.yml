@@ -80,20 +80,18 @@ stages:
               package: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
 
 - stage: Test
-  displayName: Integration tests
-  dependsOn: Deploy
-  condition: succeeded()
-
-
+  displayName: Integration tests
+  dependsOn: Deploy
+  condition: succeeded()
 
   jobs:
-  - job: Test
+  - job: Test
     displayName: Integration Tests
     pool:
-      vmImage: $(vmImageName)
+      vmImage: $(vmImageName)
     steps:
-    - task: DotNetCoreCLI@2
-      displayName: Run tests
+    - task: DotNetCoreCLI@2
+      displayName: Run tests
       inputs:
-        command: test
-        projects: $(integrationTestDirectory)/*.csproj
+        command: test
+        projects: $(integrationTestDirectory)/*.csproj
