@@ -19,6 +19,9 @@ variables:
   # Working Directory
   workingDirectory: '$(System.DefaultWorkingDirectory)/MarksAzureFunctionApp'
 
+  # Integration test directory
+  integrationTestDirectory: '$(System.DefaultWorkingDirectory)/MarksAzureTests'
+
 stages:
 - stage: Build
   displayName: Build stage
@@ -80,6 +83,8 @@ stages:
   displayName: Integration tests
   dependsOn: Deploy
   condition: succeeded()
+
+
 
   jobs:
   - job: Test
