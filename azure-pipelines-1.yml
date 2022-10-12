@@ -20,7 +20,7 @@ variables:
   workingDirectory: '$(System.DefaultWorkingDirectory)/MarksAzureFunctionApp'
 
   # Integration test directory
-  integrationTestDirectory: '$(System.DefaultWorkingDirectory)/MarksAzureTests'
+  integrationTestDirectory: '$(System.DefaultWorkingDirectory)/MarksAzureTests'
 
 stages:
 - stage: Build
