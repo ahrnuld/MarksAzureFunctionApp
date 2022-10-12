@@ -50,6 +50,7 @@ stages:
     - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
       artifact: drop
 
+
 - stage: Deploy
   displayName: Deploy stage
   dependsOn: Build
@@ -74,3 +75,20 @@ stages:
               appType: functionApp
               appName: $(functionAppName)
               package: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
+
+- stage: Test
+  displayName: Integration tests
+  dependsOn: Deploy
+  condition: succeeded()
+
+  jobs:
+  - job: Test
+    displayName: Integration Tests
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    - task: DotNetCoreCLI@2
+      displayName: Run tests
+      inputs:
+        command: test
+        projects: $(integrationTestDirectory)/*.csproj
