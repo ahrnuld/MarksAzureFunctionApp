@@ -22,6 +22,8 @@ variables:
   # Integration test directory
   integrationTestDirectory: '$(System.DefaultWorkingDirectory)/MarksAzureTests'
 
+  functionHostName: 'https://marknet6function.azurewebsites.net'
+
 stages:
 - stage: Build
   displayName: Build stage
